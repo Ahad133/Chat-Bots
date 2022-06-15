@@ -1,0 +1,170 @@
+{
+    "intents": [{
+            "tag": "greeting",
+            "patterns": ["Hi", "Is anyone there?", "Hello", "Good morning", "Good afternoon", "Good evening", "Yo", "What's up", "Sup", "Hey", "Howdy"],
+            "responses": ["Hello, thanks for visiting", "Good to see you again", "Hi there, how can I help?"]
+
+        },
+
+        {
+            "tag": "help",
+            "patterns": ["How can you help me?", "I need help", "Can you help me?", "I have a question"],
+            "responses": ["I can answer your questions", " I can help you by answering your questions"]
+
+        },
+
+        {
+            "tag": "name",
+            "patterns": ["What's your name?", "What can I call you?", "What people call you?", "How you like to be called?", "Are you a human?", "Are you a robot?"],
+            "responses": ["My name is Lionel, I am a robot", "You can call me Leo, I am a robot"]
+
+        },
+
+        {
+            "tag": "not happy",
+            "patterns": ["I want to talk to a human", "I don't want to talk to you", "I want to talk to a live agent?"],
+            "responses": ["I am trained by a human to answer your questions", "I am sure I can answer your questions"]
+
+        },
+
+        {
+            "tag": "languages",
+            "patterns": ["Which languages you speak?", "In which language you can talk?", "Do you know English?"],
+            "responses": ["I speak English", "You can talk to me in English"]
+
+        },
+
+        {
+            "tag": "thanks",
+            "patterns": ["Thanks", "Thank you", "That's helpful"],
+            "responses": ["Happy to help!", "Any time!", "My pleasure"]
+        },
+
+        {
+            "tag": "hours",
+            "patterns": ["What hours are you open?", "What are your hours?", "When are you open?"],
+            "responses": ["We're open every day 9am-9pm", "Our hours are 9am-9pm every day"]
+        },
+
+        {
+            "tag": "payments",
+            "patterns": ["Do you take credit cards?", "Do you accept Mastercard?", "Are you cash only?"],
+            "responses": ["We accept VISA, Mastercard and AMEX", "We accept most major credit cards"]
+        },
+
+        {
+            "tag": "opentoday",
+            "patterns": ["Are you open today?", "When do you open today?", "What are your hours today?"],
+            "responses": ["We're open every day from 9am-9pm", "Our hours are 9am-9pm every day"]
+        },
+
+        {
+            "tag": "goodbye",
+            "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time", "Bye Chatbot"],
+            "responses": ["See you!", "Have a nice day", "Bye! Come back again soon.", "Happy to help"]
+
+        },
+
+        {
+            "tag": "Password Reset",
+            "patterns": ["How to reset my password?", "I’m unable to log in!", "My Password is Lost, need to Reset.", "Open password reset module", "Reset my password",
+                "Forgot password", "how do i reset my password?", "Hi,I have problem with my password", "Problem with Login ID"
+            ],
+            "responses": ["Confirm your email address"],
+            "context_set": ["email"]
+        },
+
+        {
+            "tag": "E-mail id",
+            "patterns": ["@gmail.com", "@outlook.com", "@yahoo.com", "@hotmail.in"],
+            "responses": ["The reset pin has been sent on your registered mobile number"],
+            "context_filter": ["email"]
+        },
+
+        {
+            "tag": "MSP",
+            "patterns": ["What is MSP?", "What is MSP", "any info on the msp ", "i'd like to know about msp "],
+            "responses": ["MSP stands for Medical Services Plan. Its a health insurance program managed by the government for people ",
+                "MSP pays for things like doctors appointments, appointments with specialist doctors like psychiatrists, and hospital stays you need to treat a medical problem.",
+                " You pay a monthly fee based on your income. Some workplaces cover the costs of MSP fees for you"
+            ],
+            "context_filter": ["email"]
+        },
+
+        {
+            "tag": "mental illness",
+            "patterns": ["What causes mental illness?", "how do i know am i mentally defected", "how to figure out i am autistic", "am i retarded?"],
+            "responses": ["It is estimated that mental illness affects 3 in 5 adults in America.",
+                "Mental illness does not discriminate; it can affect anyone, regardless of gender, age, income, social status, ethnicity, religion, sexual orientation, or background.",
+                "Although mental illness can affect anyone, certain conditions may be more common in different populations. For instance, eating disorders tend to occur more often in females",
+                "When these occur in children under 18, they are referred to as serious emotional disturbances"
+            ]
+        },
+
+        {
+            "tag": "difference between  psychotherapy and counselling?",
+            "patterns": ["What's the difference between psychotherapy and counselling?", "which type of medication i should seek ?",
+                "how to figure out which session works for me", "should i get a checkup or two even tho i don't have any issues"
+            ],
+            "responses": ["Psychotherapy and counselling have a lot in common and usually mean the same thing.",
+                "Both are used to describe professionals who use talk-based approaches to help someone recover from a mental illness or mental health problem",
+                "Its useful to talk to someone about any problems lot of people find that simply talking with friends or family can help them feel better.",
+                "They use different theories to listen to you, support you",
+                "There are many psychotherapies with good evidence of being effective for different problems or illnesses. A few examples include cognitive-behavioural therapy, interpersonal therapy,dialectical behaviour therapy, solutions-focused brief psychotherapy, narrative therapy, and emotion-focused therapy"
+            ]
+
+        },
+
+        {
+            "tag": "suicide",
+            "patterns": ["I have thoughts of suicide ", "i wanna die"],
+            "responses": ["If you need to talk to someone i am here", "call 1-800-SUICIDE (1-800-784-2433) at any time ",
+                " 1-800-SUICIDE (1-800-784-2433)They can help you, and they can suggest good local resources "
+            ]
+        },
+
+        {
+            "tag": "schizophrenia",
+            "patterns": ["Someone I love has been diagnosed with schizophrenia. How can I help ", "i've found some people ofen talk to their imaginary friends after their child hood ",
+                "i talk to someone in my head do i have some sort of illnes in me"
+            ],
+            "responses": ["We naturally want to help a loved one who isn't feeling well. ",
+                "are you not sure how to best help when a loved one experiences a mental illness like schizophrenia. Here are some tips:"
+            ]
+
+        },
+
+        {
+            "tag": "schizophrenia tips ",
+            "responses": ["You don't have to be an expert in schizophrenia, but learning more can help you understand what's going on",
+                "Our Schizophrenia info sheet is a great place to start. You can also find a lot of information from the BC Schizophrenia Society ",
+                "Sometimes talking about problems or concerns can really helps :)",
+                "It's important to understand that talking about something difficult like experiences of schizophrenia can be very hard for your loved one's and the symptoms of schizophrenia can also make conversations difficult. If a loved one opens up to you, listen actively that is, without distractions"
+            ],
+            "patterns": ["what are tips", "i'd like to know more", "is there any help i can provide to the person?"]
+
+        },
+
+        {
+            "tag": "alcohol",
+            "patterns": ["how can i find help", "addictied to alcohol", "alcohol and drug use problems", "How can I find help for an alcohol or drug use problem?"],
+            "responses": ["Seeking to make changes in the way you use substances like alcohol", "The right help for you depends on many factors.",
+                "One way to get help is to talk to a doctor you trust and feel comfortable confiding in."
+            ]
+
+        },
+
+
+        {
+            "tag": "brain injury",
+            "patterns": ["Someone I care about has a brain injury ", "where i can find infromation about brain injury"],
+            "responses": ["A brain injury itself same as a mental illness", "someone who experiences a brain injury may also experience mental health problems ",
+                "These mental health problems may stem from the injury itself or from thoughts around the injury (like feelings of loss, anger, or frustration when quality of life changes) ",
+                "In some cases, mental health challenges may not be related to a brain injury at all", "For more information and support, visit the BC Brain Injury Association."
+            ]
+        }
+    ]
+
+
+
+}
