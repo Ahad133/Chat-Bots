@@ -1,16 +1,37 @@
-import nextcord
-from nextcrod import Interaction
-from nextcord.ext import commands
+import discord
+import os 
+import requests
+import json
 
-intents = nextcord.Intents.default()
-intents.members = True
 
-client = commands.Bot(command_prefix = '$' , intents=intents)
+client = discord.Client()
+
+
+def get_quote():
+  responses = requests.get("https://zenquotes.io/api/random")
+  json_data = json.loads(responses.text)
+  quote = json_data[0] ['q']
+  return(quote)
+  
 
 @client.event
 async def on_ready():
-    print("me ghareeb hu me chutya ho")
+  print('aj to topi hogi')
+  
+@client.event
+async  def on_message(message):
+  if message.author == client.user:
+    return
+  if message.content.startswith('geh'):
+    await message.channel.send('asfar is gay')
 
 
 
-client.run('')
+    
+    
+    if message.content.startswith('insp'):
+      quote = get_quote()
+    await message.channel.send('quote')
+
+
+client.run('OTg3Njk4ODExMjczMDg5MDQ0.GqDS7W.O4kNQCzpw-XKQB9r5IPfl9xdh8TUxtXoLuF7qQ')
