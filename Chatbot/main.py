@@ -1,3 +1,5 @@
+#main file with all the originality 
+
 # All the imports
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
@@ -12,8 +14,10 @@ import pickle
 import tensorflow
 
 # nltk.download('punkt')
+# "D:\Coding\Python\Chatbot\Chat.json" Ahad's directory
+#r"C:\\Users\\ayaz\\Desktop\\New folder\\New folder\\Python\\Chatbot\\Chat.json" ayaz's directory  
 
-with open("D:\Coding\Python\Chatbot\Chat.json") as file:
+with open(r"C:\\Users\\ayaz\\Desktop\\New folder\\New folder\\Python\\Chatbot\\Chat.json") as file:
     data = json.load(file)
 
 # print(data["intents"])
@@ -86,6 +90,10 @@ net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
 
+# i commented this out to make it work on my stupid system
+# and it did what a fucking audacity to for this bot to run
+
+# on the 2nd try by uncommenting the code its training again and again for some rerason 
 try:
     model.load("model.tflearn")
 

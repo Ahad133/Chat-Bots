@@ -16,7 +16,7 @@
         {
             "tag": "name",
             "patterns": ["What's your name?", "What can I call you?", "What people call you?", "How you like to be called?", "Are you a human?", "Are you a robot?"],
-            "responses": ["My name is Lionel, I am a robot", "You can call me Leo, I am a smarty robot","asfasddfasdf"]
+            "responses": ["My name is Lionel, I am a robot", "You can call me Leo, I am a smarty robot", "asfasddfasdf"]
 
         },
 
@@ -162,7 +162,22 @@
                 "These mental health problems may stem from the injury itself or from thoughts around the injury (like feelings of loss, anger, or frustration when quality of life changes) ",
                 "In some cases, mental health challenges may not be related to a brain injury at all", "For more information and support, visit the BC Brain Injury Association."
             ]
+        },
+
+        {
+            "tag": "adding more data",
+            "patterns": ["mental retard ", "Ouga booga"],
+            "responses": ["it should have GUI ",
+                "i went retarded ",
+                "F**K this mental health trauma I hate you Baka... >=<"
+            ]
         }
+
+
+
+
+
+
     ]
 
 

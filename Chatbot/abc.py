@@ -1,3 +1,4 @@
+#imported code
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
@@ -8,18 +9,30 @@ import tensorflow
 import random
 import json
 import pickle
+import nltk
 
-with open("Chat.json") as file:
+#nltk.download('punkt')
+
+#"D:\Coding\Python\Chatbot\Chat.json"
+#r"C:\\Users\\ayaz\\Desktop\\New folder\\New folder\\Python\\Chatbot\\Chat.json"
+  
+with open(r"C:\\Users\\ayaz\\Desktop\\New folder\\New folder\\Python\\Chatbot\\Chat.json") as file:
     data = json.load(file)
+
+# in this code its not training its direclty starting withouth even making a pickle nvm it did just in another dir for me 
+# i am going to comment this one out aswewll
+# anothe thing i learned our data is directly off the chats its not professional by any means 
 
 try:
     with open("data.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
+
 except:
     words = []
     labels = []
     docs_x = []
     docs_y = []
+
 
     for intent in data["intents"]:
         for pattern in intent["patterns"]:
@@ -75,11 +88,13 @@ net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
 
-try:
-    model.load("model.tflearn")
-except:
-    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save("model.tflearn")
+# going to comment this code out to see if hes going to train him in a loop
+# try:
+#     model.load("model.tflearn")
+
+# except:
+#     model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+#     model.save("model.tflearn")
 
 
 def bag_of_words(s, words):
