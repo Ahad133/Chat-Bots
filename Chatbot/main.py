@@ -4,71 +4,78 @@ from nltk.stem.lancaster import LancasterStemmer
 
 stemmer = LancasterStemmer()
 import numpy
-import tensorflow
 import random
 import tflearn
 import json
 import nltk
 import pickle
+import tensorflow
 
 # nltk.download('punkt')
 
-with open("Chat.json") as file:
+with open("D:\Coding\Python\Chatbot\Chat.json") as file:
     data = json.load(file)
 
 # print(data["intents"])
+try:
+    with open("data.pickle", "rb") as f:  # rb=read bytes
+        words, labels, training, output = pickle.load(f)
 
-words = []
-labels = []
-docs_x = []
-docs_y = []  # making a new list
+except:
+    words = []
+    labels = []
+    docs_x = []
+    docs_y = []  # making a new list
 
-# making a loop of words to output the typed statement by the user
-for intents in data["intents"]:
-    for pattern in intents["patterns"]:
-        wrds = nltk.word_tokenize(pattern)
-        words.extend(wrds)
-        docs_x.append(wrds)
-        docs_y.append(intents["tag"])
+    # making a loop of words to output the typed statement by the user
+    for intents in data["intents"]:
+        for pattern in intents["patterns"]:
+            wrds = nltk.word_tokenize(pattern)
+            words.extend(wrds)
+            docs_x.append(wrds)
+            docs_y.append(intents["tag"])
 
-    if intents["tag"] not in labels:
-        labels.append(intents["tag"])
+        if intents["tag"] not in labels:
+            labels.append(intents["tag"])
 
-# stemming it to remove duplicaiton and get the root of the word
-words = [stemmer.stem(w.lower()) for w in words if w != "?"]
-words = sorted(list(set(words)))
+    # stemming it to remove duplicaiton and get the root of the word
+    words = [stemmer.stem(w.lower()) for w in words if w != "?"]
+    words = sorted(list(set(words)))
 
-labels = sorted(labels)
+    labels = sorted(labels)
 
-# neural network dont take string as input we have to convert in numbers
-training = []
-output = []
+    # neural network dont take string as input we have to convert in numbers
+    training = []
+    output = []
 
-out_empty = [0 for _ in range(len(labels))]
+    out_empty = [0 for _ in range(len(labels))]
 
-for x, doc in enumerate(docs_x):
-    bag = []
+    for x, doc in enumerate(docs_x):
+        bag = []
 
-    wrds = [stemmer.stem(w.lower()) for w in doc]
+        wrds = [stemmer.stem(w.lower()) for w in doc]
 
-    for w in words:
-        if w in wrds:
-            bag.append(1)
-        else:
-            bag.append(0)
+        for w in words:
+            if w in wrds:
+                bag.append(1)
+            else:
+                bag.append(0)
 
-    output_row = out_empty[:]
-    output_row[labels.index(docs_y[x])] = 1
+        output_row = out_empty[:]
+        output_row[labels.index(docs_y[x])] = 1
 
-    training.append(bag)
-    output.append(output_row)
+        training.append(bag)
+        output.append(output_row)
 
-# convert training data in numpy arrays
-training = numpy.array(training)
-output = numpy.array(output)
+    # convert training data in numpy arrays
+    training = numpy.array(training)
+    output = numpy.array(output)
+
+    with open("data.pickle", "wb") as f:
+        pickle.dump((words, labels, training, output), f)
 
 # designing model of neural network
-# tensorflow.reset_default_graph()  # reset the previous settings
+#tensorflow.reset_default_graph()  # reset the previous settings
 
 net = tflearn.input_data(shape=[None, len(training[0])])
 net = tflearn.fully_connected(net, 8)  # 2 hidden layers which takes input each layer is connected with other
@@ -78,6 +85,13 @@ net = tflearn.fully_connected(net, len(output[0]),
 net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
+
+try:
+    model.load("model.tflearn")
+
+except:
+    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+    model.save("model.tflearn")
 
 # passing all training data
 model.fit(training, output, n_epoch=1000, batch_size=8,
@@ -112,7 +126,7 @@ def chat():
         tag = labels[results_index]  # get the tags which have the highest probability
 
         # if bot gets some random question it wouldn't go gibberish instead response smart
-        if results[results_index] > 0.75:  # if the probability is above 70% it will show the response
+        if results[results_index] > 0.70:  # if the probability is above 70% it will show the response
             for tg in data["intents"]:
                 if tg['tag'] == tag:
                     responses = tg['responses']  # choose the response

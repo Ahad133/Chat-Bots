@@ -16,7 +16,7 @@
         {
             "tag": "name",
             "patterns": ["What's your name?", "What can I call you?", "What people call you?", "How you like to be called?", "Are you a human?", "Are you a robot?"],
-            "responses": ["My name is Lionel, I am a robot", "You can call me Leo, I am a robot"]
+            "responses": ["My name is Lionel, I am a robot", "You can call me Leo, I am a smarty robot","asfasddfasdf"]
 
         },
 
