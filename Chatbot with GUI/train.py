@@ -50,16 +50,17 @@ for (pattern_sentence, tag) in xy:
     label = tags.index(tag)
     y_train.append(label)
 
+# used numpy because we need to label our data in 0s and 1s
 X_train = np.array(X_train)
 y_train = np.array(y_train)
 
 # Hyper-parameters 
 num_epochs = 1000
-batch_size = 8
+batch_size = 8 # input layer layer
 learning_rate = 0.001
 input_size = len(X_train[0])
-hidden_size = 8
-output_size = len(tags)
+hidden_size = 8 # hidden or middle layer size
+output_size = len(tags) # output layer size
 print(input_size, output_size)
 
 class ChatDataset(Dataset):
@@ -81,8 +82,9 @@ dataset = ChatDataset()
 train_loader = DataLoader(dataset=dataset,
                           batch_size=batch_size,
                           shuffle=True,
-                          num_workers=0)
+                          num_workers=2) # set 2 here to train faster using multi thread
 
+# if gpu is available use it else use cpu
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model = NeuralNet(input_size, hidden_size, output_size).to(device)
@@ -94,7 +96,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 # Train the model
 for epoch in range(num_epochs):
     for (words, labels) in train_loader:
-        words = words.to(device)
+        words = words.to(device) #push it to device
         labels = labels.to(dtype=torch.long).to(device)
         
         # Forward pass

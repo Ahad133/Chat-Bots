@@ -21,4 +21,4 @@ async def on_message(message):
         response = chatbot.request((message.content[0:]))
         await message.channel.send(response)
 
-client.run(TOKEN)
+client.run('OTg3Njk4ODExMjczMDg5MDQ0.GupQz7.lrgccX4_38ECzZf88J0Rlm9uxmGSMUD-Qq1v3I')
